@@ -1,5 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
+use App;
+use Input;
 use DB;
 use App\PreOperation;
 use App\Operator;
@@ -41,5 +43,34 @@ class PreOperationController extends Controller {
 	public function grafik(){
 		$head_truck = DB::table("head_truck")->get();
 		return View('PreOperation.grafik', ['head_truck' => $head_truck]);
+	}
+
+	public function downloadpreoperation($id = ""){
+		//if ($id == "")
+		$preOperation = DB::table("preoperation")
+					->join("operator", "preoperation.id_operator" , "=", "operator.id_operator")
+					->join("supervisi", "preoperation.id_supervisi", "=", "supervisi.id_supervisi")
+					->join("head_truck", "preoperation.id_headtruck", "=", "head_truck.id_head_truck")
+					->get();
+		$pdf = App::make('dompdf.wrapper');
+		$pdf->loadView('Ajax.PreOperation.pdf', ["preOperation" => $preOperation]);
+		return $pdf->stream();
+		/*$preOperation = PreOperation::where("preoperation.id_preOperation", "=", $id)
+					->join("operator", "preoperation.id_operator" , "=", "operator.id_operator")
+					->join("supervisi", "preoperation.id_supervisi", "=", "supervisi.id_supervisi")
+					->join("head_truck", "preoperation.id_headtruck", "=", "head_truck.id_head_truck");
+					->get();
+			return redirect()->Route("preoperation");*/
+		/*else{
+			$preOperation = DB::table('preoperation')
+					->where("preoperation.id_preOperation", "=", $id)
+					->join("operator", "preoperation.id_operator" , "=", "operator.id_operator")
+					->join("supervisi", "preoperation.id_supervisi", "=", "supervisi.id_supervisi")
+					->join("head_truck", "preoperation.id_headtruck", "=", "head_truck.id_head_truck");
+					->get();
+			//$pdf = App::make('dompdf.wrapper');
+			//$pdf->loadView('Ajax.preOperation.pdf', ["preOperation" => $preOperation);
+			return $pdf->stream();
+		}*/
 	}
 }

@@ -8,6 +8,7 @@ use PreOperation;
 use Operator;
 use App\Nearmiss;
 use App\Konfirmasi_Nearmiss;
+
 class NearmissController extends Controller {
 	protected $layout = 'template';
 
@@ -34,9 +35,28 @@ class NearmissController extends Controller {
 		return redirect()->Route("nearmiss");
 	}
 
-	public function pdfnearmiss(){
+	public function downloadNearmiss($id = ""){
+		if ($id == "")
+			return redirect()->Route("nearmiss");
+		$nearmiss = DB::table('Nearmiss')
+					->where("nearmiss.id_nearmiss", "=", $id)
+					->join("operator", "nearmiss.id_operator" , "=", "operator.id_operator")
+					->join("supervisi", "nearmiss.id_supervisi", "=", "supervisi.id_supervisi")
+					->get();
+		$konfirmasi_nearmiss = DB::table("konfirmasi_nearmiss")->where("id_nearmiss", "=", $id)->get();
 		$pdf = App::make('dompdf.wrapper');
-		$pdf->loadHTML("<h1>$id</h1>");
+		$pdf->loadView('Ajax.Nearmiss.pdf', ["nearmiss" => $nearmiss, "konfirmasi_nearmiss" => $konfirmasi_nearmiss]);
 		return $pdf->stream();
+	}
+
+	public function previewTable(){
+		$id = 1;
+		$nearmiss = DB::table('Nearmiss')
+					->where("nearmiss.id_nearmiss", "=", $id)
+					->join("operator", "nearmiss.id_operator" , "=", "operator.id_operator")
+					->join("supervisi", "nearmiss.id_supervisi", "=", "supervisi.id_supervisi")
+					->get();
+		$konfirmasi_nearmiss = DB::table("konfirmasi_nearmiss")->where("id_nearmiss", "=", $id)->get();
+		return View("Ajax.Nearmiss.pdf", ["nearmiss" => $nearmiss, "konfirmasi_nearmiss" => $konfirmasi_nearmiss]);
 	}
 }

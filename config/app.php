@@ -114,8 +114,7 @@ return [
 		 * Laravel Framework Service Providers...
 		 */
 		'Collective\Html\HtmlServiceProvider',
-		'Barryvdh\DomPDF\ServiceProvider::class',
-		
+		'Barryvdh\DomPDF\ServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',
