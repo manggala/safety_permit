@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pelaporan K3 | Dashboard</title>
+  <title>Pelaporan Safety Permit | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{ URL::to('assets/bootstrap/css/bootstrap.min.css')}}">
@@ -24,7 +24,7 @@ button{
 }
 </style>
 </head>
-<body class="sidebar-mini wysihtml5-supported skin-green">
+<body class="sidebar-mini wysihtml5-supported skin-purple-light">
 <div class="wrapper">
 
   <header class="main-header">
@@ -93,18 +93,19 @@ button{
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">Navigasi Menu</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-truck"></i> <span>Pre Operation</span> <i class="fa fa-angle-left pull-right"></i>
+        <li>
+          <a href="{{URL::to('safety-permit')}}">
+            <i class="fa fa-warning"></i> <span>Safety Permit</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="{{URL::to('preoperation')}}"><i class="fa fa-bus"></i> Daftar Pre Operation</a></li>
-            <li><a href="{{URL::to('preoperation/grafik')}}"><i class="fa fa-line-chart"></i> Grafik Pre Operation</a></li>
-          </ul>
         </li>
         <li>
-          <a href="{{URL::to('nearmiss')}}">
-            <i class="fa fa-warning"></i> <span>Near Miss</span>
+          <a href="{{URL::to('accident-report')}}">
+            <i class="fa fa-ambulance"></i> <span>Accident Report</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{URL::to('emergency-report')}}">
+            <i class="fa fa-bell"></i> <span>Emergency Report</span>
           </a>
         </li>
       </ul>
