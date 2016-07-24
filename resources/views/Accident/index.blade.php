@@ -36,7 +36,7 @@
 	                  <td>{{ $data->lokasi_formaccident}}</td>
 	                  <td>{{ $data->nip}}</td>
 	                  <td>
-	                  	<button class="btn btn-sm btn-flat btn-warning col-sm-12" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="nm" idTipe="{{ $data->id_nearmiss}}">Lihat</button>
+	                  	<button class="btn btn-sm btn-flat btn-warning col-sm-12" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="ar" idTipe="{{ $data->id_formaccident}}">Lihat</button>
 	                  </td>
 	                </tr>
 	                @endforeach

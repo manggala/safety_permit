@@ -38,7 +38,7 @@
 	                  <td>{{ $data->id_pekerjaan}}</td>
 	                  <td>{{ $data->id_lokasi}}</td>
 	                  <td>
-	                  	<button class="btn btn-sm btn-flat btn-warning" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="nm" idTipe="{{ $data->id_nearmiss}}">Lihat</button>
+	                  	<button class="btn btn-sm btn-flat btn-warning" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="sp" idTipe="{{ $data->id_form}}">Lihat</button>
 	                  	<button class="btn btn-sm btn-flat btn-success" data-toggle="modal" >Setuju</button>
 	                  	<button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" >Tidak Setuju</button>
 	                  </td>

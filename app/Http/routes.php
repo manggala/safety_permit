@@ -24,3 +24,5 @@ Route::get('/logout', ['as' => 'logout', 'uses' => 'WelcomeController@logout']);
 Route::get('/safety-permit', ['as' => 'safety-permit.list', 'uses' => 'SafetyPermitController@index']);
 Route::get('/accident-report', ['as' => 'accient-report.list', 'uses' => 'AccidentController@index']);
 Route::get('/emergency-report', ['as' => 'emergency-report.list', 'uses' => 'EmergencyController@index']);
+
+Route::get('/ajax/detail/{tipe}/{id}', ['as' => 'safety-permit.detail', 'uses' => 'AjaxController@detail']);
