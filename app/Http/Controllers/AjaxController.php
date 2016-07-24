@@ -60,60 +60,21 @@ class AjaxController extends Controller {
 			);
 		}
 		return "tipe tidak valid";
-
-		if ($tipe == "po"){
-			$daftarPreOperation = DB::table('PreOperation')
-						->where("preoperation.id_preOperation", "=", $id)
-						->join("operator", "preoperation.id_operator" , "=", "operator.id_operator")
-						->join("head_truck", "preoperation.id_headtruck", "=", "head_truck.id_head_truck")
-						->get();
-			if (count($daftarPreOperation) > 0)
-				return View('Ajax.PreOperation.detail', ["daftarPreOperation" => $daftarPreOperation]);
-			else 
-				return "Gagal Memuat";
-		} else if ($tipe == "nm"){
-			$Nearmiss = DB::table('Nearmiss')
-						->where("nearmiss.id_nearmiss", "=", $id)
-						->join("operator", "nearmiss.id_operator" , "=", "operator.id_operator")
-						->join("supervisi", "nearmiss.id_supervisi", "=", "supervisi.id_supervisi")
-						->get();
-			if (count($Nearmiss) > 0)
-				return View('Ajax.Nearmiss.detail', ["Nearmiss" => $Nearmiss]);
-		}
-		return "Gagal Memuat";
 	}
 
 	public function konfirmasi($tipe, $id){
-		if ($tipe == "po"){
-			$preOperation = PreOperation::where("id_preOperation", "=", $id)->get();
-			if (count($preOperation) > 0)
-				return View('Ajax.PreOperation.konfirmasi', ["preOperation" => $preOperation]);
-		} else if ($tipe == "nm"){
-			$nearmiss = Nearmiss::where("id_nearmiss", "=", $id)->get();
-			$status = $nearmiss[0]->status_nearmiss;
-			if ($status == 0){
-				Nearmiss::where("id_nearmiss", "=", $id)->update(["status_nearmiss" => 1]);
-				$status = 0;
-			} 
-			return View('Ajax.Nearmiss.terima', ["status" => $status]);
-		} else if ($tipe == "nm-hse"){
-			$sessionData = Session::get('supervisiSession');
-			$nearmiss = "";
-			if ($sessionData->jenis_supervisi != "K3"){
-				$nearmiss = "nothse";
-			} else{
-				$nearmiss = DB::table("nearmiss")
-							->where("id_nearmiss", "=", $id)
-							->where("status_nearmiss", "=", 1)
-							->get();
-			}
-			$konfirmasi_nearmiss = DB::table("konfirmasi_nearmiss")
-								->where("id_nearmiss", "=", $id)
-								->get();
-			return View('Ajax.Nearmiss.konfirmasi', [
-				"nearmiss" => $nearmiss, 
-				"konfirmasi_nearmiss" => $konfirmasi_nearmiss]);
-		}
+		$boolTipe = 0;
+		if ($tipe == "setuju")
+			$boolTipe = 1;
+		else if($tipe == "tidak")
+			$boolTipe = -1;
+		SafetyPermit::where("id_form", "=", $id)->update(["status_safetypermit" => $boolTipe]);
+
+		if ($tipe == "setuju")
+			return "Safety Permit telah disetujui";
+		else if ($tipe == "tidak")
+			return "Safety Permit telah ditolak";
+		return "tipe tida valid";
 	}
 
 	public function getData($idPertanyaan, $head_truck){

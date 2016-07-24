@@ -38,9 +38,15 @@
 	                  <td>{{ $data->id_pekerjaan}}</td>
 	                  <td>{{ $data->id_lokasi}}</td>
 	                  <td>
+	                  	@if ($data->status_safetypermit == 0)
+		                  	<button class="btn btn-sm btn-flat btn-success" data-toggle="modal" data-target="#konfirmasiModal" onclick="konfirmasiModal(this)" tipe="setuju" idTipe="{{ $data->id_form}}" >Setuju</button>
+		                  	<button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" data-target="#konfirmasiModal" onclick="konfirmasiModal(this)" tipe="tidak" idTipe="{{ $data->id_form}}" >Tidak Setuju</button>
+	                  	@elseif ($data->status_safetypermit == 1)
+	                  		<button class="btn btn-sm btn-success" style="border-radius: 15px"><b>-</b> Disetujui</button>
+	                  	@elseif ($data->status_safetypermit == -1)
+	                  		<button class="btn btn-sm btn-danger" style="border-radius: 15px">Tidak Disetujui</button>
+	                  	@endif
 	                  	<button class="btn btn-sm btn-flat btn-warning" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="sp" idTipe="{{ $data->id_form}}">Lihat</button>
-	                  	<button class="btn btn-sm btn-flat btn-success" data-toggle="modal" >Setuju</button>
-	                  	<button class="btn btn-sm btn-flat btn-danger" data-toggle="modal" >Tidak Setuju</button>
 	                  </td>
 	                </tr>
 	                @endforeach
