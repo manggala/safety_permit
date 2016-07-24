@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class SafetyPermit extends Model {
+class safetypermit extends Model {
 
 	protected $table = "form_safetypermit";
 

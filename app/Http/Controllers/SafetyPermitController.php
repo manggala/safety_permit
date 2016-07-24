@@ -6,7 +6,7 @@ use Datetime;
 use DB;
 use PreOperation;
 use Operator;
-use App\Models\Form\SafetyPermit;
+use App\Models\Form\safetypermit;
 class SafetyPermitController extends Controller {
 	protected $layout = 'template';
 

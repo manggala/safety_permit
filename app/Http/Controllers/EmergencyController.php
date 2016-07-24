@@ -6,7 +6,7 @@ use Datetime;
 use DB;
 use PreOperation;
 use Operator;
-use App\Models\Form\Emergency;
+use App\Models\Form\emergency;
 class EmergencyController extends Controller {
 	protected $layout = 'template';
 
