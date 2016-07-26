@@ -9,6 +9,7 @@ use Date;
 use App\Http\Controllers\Controller;
 use App\Models\Form\emergency;
 use App\Models\Checklist\kd;
+use App\Models\Checklist\kerugian;
 
 class WSController extends Controller {
 	public function insertView(){
@@ -32,6 +33,15 @@ class WSController extends Controller {
 				$checklist_kd->save();
 			}
 		}
-		print_r($_POST);
+		for ($i=1; $i <= 6; $i++) {
+			if (Input::get('kerugian_'.$i) != ""){
+				$checklist_kerugian = new kerugian;
+				$checklist_kerugian->id_daftar_k = Input::get('kerugian_'.$i);
+				$checklist_kerugian->id_formemergency = $form_emergency->id_formemergency;
+				$checklist_kerugian->save();
+			}
+		}
+		return Response::json(1,200);
+		//print_r($_POST);
 	}
 }
