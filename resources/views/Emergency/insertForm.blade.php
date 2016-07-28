@@ -8,7 +8,7 @@
 	<br>
 	<input type="text" name="id_departemen" placeholder="departemen">
 	<br>
-	<input type="text" name="id_lokasi" placeholder="lokasi_kejadian">
+	<input type="text" name="id_lokasi" placeholder="id_lokasi">
 	<br>
 
 	<!-- Keadaan darurat -->

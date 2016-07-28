@@ -30,3 +30,6 @@ Route::get('/ajax/konfirmasi/{tipe}/{id}', ['as' => 'safety-permit.konfirmasi', 
 
 Route::get('/ws/emergency/insertForm', ['as' => 'emergency.mobile.insert.form', 'uses' => 'WSController@insertView']);
 Route::post('/ws/emergency/insert', ['as' => 'emergency.mobile.insert', 'uses' => 'WSController@insertForm']);
+
+Route::get('/ws/AccNear/{tipe}', ['as' => 'emergency.mobile.insert.accnear', 'uses' => 'WSController@insertNAView']);
+Route::post('/ws/AccNear/insert', ['as' => 'emergency.mobile.insert', 'uses' => 'WSController@insertNAForm']);

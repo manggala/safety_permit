@@ -8,6 +8,9 @@ use Auth;
 use Date;
 use App\Http\Controllers\Controller;
 use App\Models\Form\emergency;
+use App\Models\Form\accident;
+use App\Models\Form\nearmiss;
+use App\Models\Form\accnear;
 use App\Models\Checklist\kd;
 use App\Models\Checklist\kerugian;
 
@@ -43,5 +46,45 @@ class WSController extends Controller {
 		}
 		return Response::json(["1" => 1],200);
 		//print_r($_POST);
+	}
+	public function insertNAView($tipe){
+		return View('AccNear.insertForm', ["type" => $tipe]);
+	}
+	public function insertAccidentForm($Input){
+		$form_accident = new accident;
+		$form_accident->nip = $Input['nip'];
+		$form_accident->id_departemen = $Input['id_departemen'];
+		$form_accident->id_jabatan = $Input['id_jabatan'];
+		$form_accident->id_lokasi = $Input['id_lokasi'];
+		$form_accident->kronologi_formaccident = $Input['kronologi_formaccident'];
+		$form_accident->keterangan_formaccident = $Input['keterangan_formaccident'];
+		$form_accident->save();
+		return $form_accident->id_formaccident;
+	}
+
+	public function insertNearmissForm($Input){
+		$form_nearmiss = new nearmiss;
+		$form_nearmiss->nip = $Input['nip'];
+		$form_nearmiss->id_jabatan = $Input['id_jabatan'];
+		$form_nearmiss->id_departemen = $Input['id_departemen'];
+		$form_nearmiss->id_lokasi = $Input['id_lokasi'];
+		$form_nearmiss->kronologi_nearmiss = $Input['kronologi_nearmiss'];
+		$form_nearmiss->akibat_nearmiss = $Input['akibat_nearmiss'];
+		$form_nearmiss->tindakan_nearmiss = $Input['tindakan_nearmiss'];
+		$form_nearmiss->save();
+		return $form_nearmiss->id_formnearmiss;
+	}
+
+	public function insertNAForm(){
+		$id_parent = 0;
+		if (Input::get('type') == "nearmiss")
+			$id_parent = $this->insertNearmissForm(Input::all());
+		else if (Input::get('type') == "accident")
+			$id_parent = $this->insertAccidentForm(Input::all());
+		$accnear = new accnear;
+		$accnear->id_parent = $id_parent;
+		$accnear->type = Input::get('type');
+		if ($accnear->save())
+			return json(["1" => 1], 200);
 	}
 }
