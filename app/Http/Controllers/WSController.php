@@ -41,7 +41,7 @@ class WSController extends Controller {
 				$checklist_kerugian->save();
 			}
 		}
-		return Response::json(1,200);
+		return Response::json(["1" : 1],200);
 		//print_r($_POST);
 	}
 }
