@@ -85,7 +85,7 @@ class WSController extends Controller {
 		$accnear->id_parent = $id_parent;
 		$accnear->type = Input::get('type');
 		if ($accnear->save())
-			return json(["1" => 1], 200);
+			return Response::json(["1" => 1], 200);
 	}
 
 	public function insertSPView($tipe){
@@ -93,7 +93,6 @@ class WSController extends Controller {
 	}
 
 	public function insertSPForm(){
-		
-		return json(["1" => 1], 200);
+		return Response::json(["1" => 1], 200);
 	}
 }
