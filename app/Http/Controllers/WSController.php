@@ -11,6 +11,7 @@ use App\Models\Form\emergency;
 use App\Models\Form\accident;
 use App\Models\Form\nearmiss;
 use App\Models\Form\accnear;
+use App\Models\Form\safetypermit;
 use App\Models\Checklist\kd;
 use App\Models\Checklist\kerugian;
 
@@ -45,7 +46,6 @@ class WSController extends Controller {
 			}
 		}
 		return Response::json(["1" => 1],200);
-		//print_r($_POST);
 	}
 	public function insertNAView($tipe){
 		return View('AccNear.insertForm', ["type" => $tipe]);
@@ -86,5 +86,14 @@ class WSController extends Controller {
 		$accnear->type = Input::get('type');
 		if ($accnear->save())
 			return json(["1" => 1], 200);
+	}
+
+	public function insertSPView($tipe){
+		return View('SafetyPermit.insertForm', ["type" => $tipe]);
+	}
+
+	public function insertSPForm(){
+		
+		return json(["1" => 1], 200);
 	}
 }
