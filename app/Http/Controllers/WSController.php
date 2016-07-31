@@ -7,13 +7,19 @@ use Session;
 use Auth;
 use Date;
 use App\Http\Controllers\Controller;
+
 use App\Models\Form\emergency;
 use App\Models\Form\accident;
 use App\Models\Form\nearmiss;
 use App\Models\Form\accnear;
 use App\Models\Form\safetypermit;
+
 use App\Models\Checklist\kd;
 use App\Models\Checklist\kerugian;
+use App\Models\Checklist\pl;
+use App\Models\Checklist\peralatanbaik;
+use App\Models\Checklist\orientasik3;
+use App\Models\Checklist\apd;
 
 class WSController extends Controller {
 	public function insertView(){
@@ -93,6 +99,59 @@ class WSController extends Controller {
 	}
 
 	public function insertSPForm(){
+		$form_safetypermit = new safetypermit;
+		$form_safetypermit->id_pekerjaan = Input::get('id_pekerjaan');
+		$form_safetypermit->id_lokasi = Input::get('id_lokasi');
+		$form_safetypermit->id_departemen = Input::get('id_departemen');
+		$form_safetypermit->id_pelaksana = Input::get('id_pelaksana');
+		$form_safetypermit->id_jabatan = Input::get('id_jabatan');
+		$form_safetypermit->id_pengawas = Input::get('id_pengawas');
+		$form_safetypermit->waktu_mulai = Input::get('waktu_mulai');
+		$form_safetypermit->waktu_selesai = Input::get('waktu_selesai');
+		$form_safetypermit->jumlah_pekerja = Input::get('jumlah_pekerja');
+		$form_safetypermit->jumlah_mitrakerja = Input::get('jumlah_mitrakerja');
+
+		$form_safetypermit->save();
+
+		// Peralatan dan Lokasi
+		for ($i=1; $i <= 19; $i++) {
+			if (Input::get('pl_'.$i) != ""){
+				$checklist_pl = new pl;
+				$checklist_pl->id_daftar_pl = Input::get('pl_'.$i);
+				$checklist_pl->id_form_safetypermit = $form_safetypermit->id_form;
+				$checklist_pl->save();
+			}
+		}
+
+		// Peralatan Baik
+		for ($i=1; $i <= 8; $i++) {
+			if (Input::get('peralatanbaik_'.$i) != ""){
+				$checklist_peralatanbaik = new peralatanbaik;
+				$checklist_peralatanbaik->id_daftar_pb = Input::get('peralatanbaik_'.$i);
+				$checklist_peralatanbaik->id_form_safetypermit = $form_safetypermit->id_form;
+				$checklist_peralatanbaik->save();
+			}
+		}
+
+		// Orientasi K3
+		for ($i=1; $i <= 4; $i++) {
+			if (Input::get('ok_'.$i) != ""){
+				$checklist_ok = new orientasik3;
+				$checklist_ok->id_daftar_ok = Input::get('ok_'.$i);
+				$checklist_ok->id_form_safetypermit = $form_safetypermit->id_form;
+				$checklist_ok->save();
+			}
+		}
+
+		// Alat Pelindung Diri
+		for ($i=1; $i <= 9; $i++) {
+			if (Input::get('apd_'.$i) != ""){
+				$checklist_apd = new apd;
+				$checklist_apd->id_daftar_apd = Input::get('apd_'.$i);
+				$checklist_apd->id_form_safetypermit = $form_safetypermit->id_form;
+				$checklist_apd->save();
+			}
+		}
 		return Response::json(["1" => 1], 200);
 	}
 }
