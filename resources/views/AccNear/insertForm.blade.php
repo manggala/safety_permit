@@ -1,4 +1,8 @@
-<form action="insert" method="post">
+@if ($type == "accident")
+<form action="insertacc" method="post">
+@elseif ($type == "nearmiss")
+<form action="insertnear" method="post">
+@endif
 	<!-- Form umum -->
 	<input type="hidden" name="type" value="{{$type}}">
 	<input type="text" name="nip" placeholder="nip">
