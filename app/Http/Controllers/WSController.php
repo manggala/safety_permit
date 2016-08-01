@@ -34,22 +34,19 @@ class WSController extends Controller {
 		$form_emergency->penanganan_formemergency = Input::get("penanganan_formemergency");
 		$form_emergency->oleh_formemergency = Input::get("oleh_formemergency");
 		$sukses_form = $form_emergency->save();
-
-		for ($i=1; $i <= 7; $i++) {
-			if (Input::get('keadaan_darurat['.$i.']') != ""){
-				$checklist_kd = new kd;
-				$checklist_kd->id_daftar_kd = Input::get('keadaan_darurat['.$i.']') != "";
-				$checklist_kd->id_formemergency = $form_emergency->id_formemergency;
-				$checklist_kd->save();
-			}
+		$keadaan_darurat = Input::get('keadaan_darurat');
+		$kerugian = Input::get('kerugian');
+		for ($i = 0; $i < count($keadaan_darurat); $i++){
+			$checklist_kd = new kd;
+			$checklist_kd->daftar_kd = $keadaan_darurat[$i];
+			$checklist_kd->id_formemergency = $form_emergency->id_formemergency;
+			$checklist_kd->save();
 		}
-		for ($i=1; $i <= 6; $i++) {
-			if (Input::get('kerugian['.$i.']') != ""){
-				$checklist_kerugian = new kerugian;
-				$checklist_kerugian->id_daftar_k = Input::get('kerugian['.$i.']');
-				$checklist_kerugian->id_formemergency = $form_emergency->id_formemergency;
-				$checklist_kerugian->save();
-			}
+		for ($i = 0; $i < count($kerugian); $i++){
+			$checklist_kerugian = new kerugian;
+			$checklist_kerugian->daftar_kerugian = $kerugian[$i];
+			$checklist_kerugian->id_formemergency = $form_emergency->id_formemergency;
+			$checklist_kerugian->save();
 		}
 		return Response::json(["1" => 1],200);
 	}
@@ -60,7 +57,6 @@ class WSController extends Controller {
 		$form_accident = new accident;
 		$form_accident->nip = Input::get('nip');
 		$form_accident->id_departemen = Input::get('departemen');
-		
 		$form_accident->id_jabatan = Input::get('jabatan');
 		$form_accident->id_lokasi = Input::get('id_lokasi');
 		$form_accident->kronologi_formaccident = Input::get('kronologi');
@@ -82,14 +78,6 @@ class WSController extends Controller {
 		$form_nearmiss->save();
 		$this->insertAccNearForm($form_nearmiss->id_formnearmiss, "nearmiss");
 		return Response::json(["1" => 1], 200);
-	}
-
-	public function insertNAForm(){
-		$id_parent = 0;
-		if (Input::get('type') == "nearmiss")
-			$id_parent = $this->insertNearmissForm(Input::all());
-		else if (Input::get('type') == "accident")
-			$id_parent = $this->insertAccidentForm(Input::all());
 	}
 
 	public function insertAccNearForm($id_parent, $type){
