@@ -28,11 +28,11 @@ class WSController extends Controller {
 	public function insertForm(){
 		$form_emergency = new emergency;
 		$form_emergency->nip = Input::get("nip");
-		$form_emergency->id_jabatan = Input::get("id_jabatan");
-		$form_emergency->id_departemen = Input::get("id_departemen");
+		$form_emergency->id_jabatan = Input::get("jabatan");
+		$form_emergency->id_departemen = Input::get("departemen");
 		$form_emergency->id_lokasi = Input::get("id_lokasi");
-		$form_emergency->penanganan_formemergency = Input::get("penanganan_formemergency");
-		$form_emergency->oleh_formemergency = Input::get("oleh_formemergency");
+		$form_emergency->penanganan_formemergency = Input::get("penanganan_apa");
+		$form_emergency->oleh_formemergency = Input::get("penanganan_siapa");
 		$sukses_form = $form_emergency->save();
 		$keadaan_darurat = Input::get('keadaan_darurat');
 		$kerugian = Input::get('kerugian');
