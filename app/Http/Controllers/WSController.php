@@ -36,17 +36,17 @@ class WSController extends Controller {
 		$sukses_form = $form_emergency->save();
 
 		for ($i=1; $i <= 7; $i++) {
-			if (Input::get('kd_'.$i) != ""){
+			if (Input::get('keadaan_darurat['.$i.']') != ""){
 				$checklist_kd = new kd;
-				$checklist_kd->id_daftar_kd = Input::get('kd_'.$i);
+				$checklist_kd->id_daftar_kd = Input::get('keadaan_darurat['.$i.']') != "";
 				$checklist_kd->id_formemergency = $form_emergency->id_formemergency;
 				$checklist_kd->save();
 			}
 		}
 		for ($i=1; $i <= 6; $i++) {
-			if (Input::get('kerugian_'.$i) != ""){
+			if (Input::get('kerugian['.$i.']') != ""){
 				$checklist_kerugian = new kerugian;
-				$checklist_kerugian->id_daftar_k = Input::get('kerugian_'.$i);
+				$checklist_kerugian->id_daftar_k = Input::get('kerugian['.$i.']');
 				$checklist_kerugian->id_formemergency = $form_emergency->id_formemergency;
 				$checklist_kerugian->save();
 			}
@@ -60,7 +60,7 @@ class WSController extends Controller {
 		$form_accident = new accident;
 		$form_accident->nip = Input::get('nip');
 		$form_accident->id_departemen = Input::get('departemen');
-		$form_accident->nama = Input::get('nama');
+		
 		$form_accident->id_jabatan = Input::get('jabatan');
 		$form_accident->id_lokasi = Input::get('id_lokasi');
 		$form_accident->kronologi_formaccident = Input::get('kronologi');
