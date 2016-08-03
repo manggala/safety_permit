@@ -19,7 +19,7 @@ class AccidentController extends Controller {
 
 	public function index(){
 		$form = accnear::all();
-		return View('Accnear.index', ["form" => $form]);
+		return View('AccNear.index', ["form" => $form]);
 	}
 
 	public function formhse(){
