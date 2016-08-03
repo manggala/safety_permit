@@ -91,7 +91,7 @@ class WSController extends Controller {
 		return View('SafetyPermit.insertForm', ["type" => $tipe]);
 	}
 
-	public function insertSPForm(){
+	public function insertSPForm($tipe){
 		$form_safetypermit = new safetypermit;
 		$form_safetypermit->id_pekerjaan = Input::get('id_pekerjaan');
 		$form_safetypermit->id_lokasi = Input::get('id_lokasi');
@@ -103,47 +103,36 @@ class WSController extends Controller {
 		$form_safetypermit->waktu_selesai = Input::get('waktu_selesai');
 		$form_safetypermit->jumlah_pekerja = Input::get('jumlah_pekerja');
 		$form_safetypermit->jumlah_mitrakerja = Input::get('jumlah_mitrakerja');
-
 		$form_safetypermit->save();
 
-		// Peralatan dan Lokasi
-		for ($i=1; $i <= 19; $i++) {
-			if (Input::get('pl_'.$i) != ""){
-				$checklist_pl = new pl;
-				$checklist_pl->id_daftar_pl = Input::get('pl_'.$i);
-				$checklist_pl->id_form_safetypermit = $form_safetypermit->id_form;
-				$checklist_pl->save();
-			}
-		}
+		$pengamanan = Input::get("pengamanan");
+		$pelindung_diri = Input::get("pelindung_diri");
+		$orientasi_k3 = Input::get("orientasi_k3");
+		$kondisi_baik = Input::get("kondisi_baik");
 
-		// Peralatan Baik
-		for ($i=1; $i <= 8; $i++) {
-			if (Input::get('peralatanbaik_'.$i) != ""){
-				$checklist_peralatanbaik = new peralatanbaik;
-				$checklist_peralatanbaik->id_daftar_pb = Input::get('peralatanbaik_'.$i);
-				$checklist_peralatanbaik->id_form_safetypermit = $form_safetypermit->id_form;
-				$checklist_peralatanbaik->save();
-			}
+		foreach ($pengamanan as $p) {
+			$checklist_pl = new pl;
+			$checklist_pl->daftar_pl = $p;
+			$checklist_pl->id_form_safetypermit = $form_safetypermit->id_form;
+			$checklist_pl->save();
 		}
-
-		// Orientasi K3
-		for ($i=1; $i <= 4; $i++) {
-			if (Input::get('ok_'.$i) != ""){
-				$checklist_ok = new orientasik3;
-				$checklist_ok->id_daftar_ok = Input::get('ok_'.$i);
-				$checklist_ok->id_form_safetypermit = $form_safetypermit->id_form;
-				$checklist_ok->save();
-			}
+		foreach ($pelindung_diri as $pd) {
+			$checklist_apd = new apd;
+			$checklist_apd->daftar_apd = $pd;
+			$checklist_apd->id_form_safetypermit = $form_safetypermit->id_form;
+			$checklist_apd->save();
 		}
-
-		// Alat Pelindung Diri
-		for ($i=1; $i <= 9; $i++) {
-			if (Input::get('apd_'.$i) != ""){
-				$checklist_apd = new apd;
-				$checklist_apd->id_daftar_apd = Input::get('apd_'.$i);
-				$checklist_apd->id_form_safetypermit = $form_safetypermit->id_form;
-				$checklist_apd->save();
-			}
+		foreach ($orientasi_k3 as $ok) {
+			$checklist_ok = new orientasik3;
+			$checklist_ok->daftar_ok = $ok;
+			$checklist_ok->id_form_safetypermit = $form_safetypermit->id_form;
+			$checklist_ok->save();
+		}
+		foreach ($kondisi_baik as $kb) {
+			$checklist_peralatanbaik = new peralatanbaik;
+			$checklist_peralatanbaik->daftar_pb = $kb;
+			$checklist_peralatanbaik->id_form_safetypermit = $form_safetypermit->id_form;
+			$checklist_peralatanbaik->save();
 		}
 		return Response::json(["1" => 1], 200);
 	}

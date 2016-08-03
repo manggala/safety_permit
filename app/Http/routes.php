@@ -36,4 +36,4 @@ Route::post('/ws/AccNear/insertnear', ['as' => 'emergency.mobile.insert.near', '
 Route::get('/ws/AccNear/{type}', ['as' => 'emergency.mobile.insert', 'uses' => 'WSController@insertNAView']);
 
 Route::get('ws/sp/{tipe}', ['as' => 'safety-permit.mobile.insert.sp', 'uses' => 'WSController@insertSPView']);
-Route::post('ws/sp/insert', ['as' => 'safety-permit.mobile.insert', 'uses' => 'WSController@insertSPForm']);
+Route::post('ws/sp/insert/{tipe}', ['as' => 'safety-permit.mobile.insert', 'uses' => 'WSController@insertSPForm']);

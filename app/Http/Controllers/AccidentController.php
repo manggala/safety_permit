@@ -7,6 +7,7 @@ use DB;
 use PreOperation;
 use Operator;
 use App\Models\Form\accident;
+use App\Models\Form\accnear;
 
 class AccidentController extends Controller {
 	protected $layout = 'template';
@@ -17,9 +18,8 @@ class AccidentController extends Controller {
 	}
 
 	public function index(){
-		$form = Accident::all();
-
-		return View('Accident.index', ["form" => $form]);
+		$form = accnear::all();
+		return View('Accnear.index', ["form" => $form]);
 	}
 
 	public function formhse(){

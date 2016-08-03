@@ -38,8 +38,17 @@ class AjaxController extends Controller {
 				"checklist_orientasik3" => $checklist_orientasik3,
 				"checklist_apd" => $checklist_apd,]
 			);
-		} else if ($tipe == "ar"){
+		} else if ($tipe == "accident"){
 			$dataAR = Accident::where("id_formaccident", "=", $id)
+					->join("pegawai", "form_accident.nip", "=", "pegawai.nip")
+					->first();
+			if ($dataAR == '')
+				return "Data tidak dapat diambil";
+			return View("Ajax.Accident.detail", 
+				["dataAR" => $dataAR]
+			);
+		} else if ($tipe == "nearmiss"){
+			$dataAR = nearmiss::where("id_formaccident", "=", $id)
 					->join("pegawai", "form_accident.nip", "=", "pegawai.nip")
 					->first();
 			return View("Ajax.Accident.detail", 
