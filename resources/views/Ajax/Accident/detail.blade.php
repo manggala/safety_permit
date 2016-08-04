@@ -17,10 +17,6 @@
 			<div class="col-sm-8">: {{ $dataAR->nip}}</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4">Nama</div>
-			<div class="col-sm-8">: {{ $dataAR->nama_pegawai}}</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-4">Jabatan</div>
 			<div class="col-sm-8">: {{ $dataAR->id_jabatan}}</div>
 		</div>
@@ -34,7 +30,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-4">Tanggal/Waktu Kejadian</div>
-			<div class="col-sm-8">: {{ $dataAR->tanggal_formaccident}}/{{ $dataAR->waktu_formaccident}}</div>
+			<div class="col-sm-8">: {{ $dataAR->created_at}}</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">Kronologi</div>

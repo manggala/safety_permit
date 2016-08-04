@@ -133,7 +133,7 @@ class WSController extends Controller {
 			$checklist_ok->save();
 		}
 		if(isset($kondisi_baik)){
-			
+
 			foreach ($kondisi_baik as $kb) {
 				$checklist_peralatanbaik = new peralatanbaik;
 				$checklist_peralatanbaik->daftar_pb = $kb;
