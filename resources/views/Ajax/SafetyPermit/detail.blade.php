@@ -10,6 +10,7 @@
 				<div class="col-sm-8">: IPG-FORM/WP/02 - {{ $dataSP->id_form}}</div>
 			@else if ($dataSP->id_jenissafetypermit == 'confined')
 				<div class="col-sm-8">: IPG-FORM/WP/03 - {{ $dataSP->id_form}}</div>
+			@endif
 		</div>
 		<div class="row">
 			<div class="col-sm-4">Jenis Pekerjaan</div>
