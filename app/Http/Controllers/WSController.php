@@ -21,6 +21,7 @@ use App\Models\Checklist\peralatanbaik;
 use App\Models\Checklist\orientasik3;
 use App\Models\Checklist\apd;
 
+use App\Models\Debug;
 class WSController extends Controller {
 	public function insertView(){
 		return View("Emergency.insertForm");
@@ -94,6 +95,7 @@ class WSController extends Controller {
 	}
 
 	public function insertSPForm($tipe){
+		Debug::insert(Input::all());
 		$form_safetypermit = new safetypermit;
 		$form_safetypermit->id_pekerjaan = Input::get('id_pekerjaan');
 		$form_safetypermit->id_lokasi = Input::get('id_lokasi');
