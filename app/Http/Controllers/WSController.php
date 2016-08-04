@@ -95,7 +95,6 @@ class WSController extends Controller {
 	}
 
 	public function insertSPForm($tipe){
-		Debug::insert(Input::all());
 		$form_safetypermit = new safetypermit;
 		$form_safetypermit->id_pekerjaan = Input::get('id_pekerjaan');
 		$form_safetypermit->id_lokasi = Input::get('id_lokasi');
@@ -133,11 +132,14 @@ class WSController extends Controller {
 			$checklist_ok->id_form_safetypermit = $form_safetypermit->id_form;
 			$checklist_ok->save();
 		}
-		foreach ($kondisi_baik as $kb) {
-			$checklist_peralatanbaik = new peralatanbaik;
-			$checklist_peralatanbaik->daftar_pb = $kb;
-			$checklist_peralatanbaik->id_form_safetypermit = $form_safetypermit->id_form;
-			$checklist_peralatanbaik->save();
+		if(isset($kondisi_baik)){
+			
+			foreach ($kondisi_baik as $kb) {
+				$checklist_peralatanbaik = new peralatanbaik;
+				$checklist_peralatanbaik->daftar_pb = $kb;
+				$checklist_peralatanbaik->id_form_safetypermit = $form_safetypermit->id_form;
+				$checklist_peralatanbaik->save();
+			}
 		}
 		return Response::json(["1" => 1], 200);
 	}

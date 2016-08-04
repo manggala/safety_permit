@@ -40,7 +40,6 @@ class AjaxController extends Controller {
 			);
 		} else if ($tipe == "accident"){
 			$dataAR = Accident::where("id_formaccident", "=", $id)
-					->join("pegawai", "form_accident.nip", "=", "pegawai.nip")
 					->first();
 			if ($dataAR == '')
 				return "Data tidak dapat diambil";
@@ -49,7 +48,6 @@ class AjaxController extends Controller {
 			);
 		} else if ($tipe == "nearmiss"){
 			$dataAR = nearmiss::where("id_formaccident", "=", $id)
-					->join("pegawai", "form_accident.nip", "=", "pegawai.nip")
 					->first();
 			return View("Ajax.Accident.detail", 
 				["dataAR" => $dataAR]
