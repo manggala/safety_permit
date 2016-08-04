@@ -6,6 +6,7 @@ use Session;
 
 use App\Models\Form\SafetyPermit;
 use App\Models\Form\Accident;
+use App\Models\Form\nearmiss;
 use App\Models\Form\Emergency;
 use App\Models\Checklist\pl;
 use App\Models\Checklist\peralatanbaik;
