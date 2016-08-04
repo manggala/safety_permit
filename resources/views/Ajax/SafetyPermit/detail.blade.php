@@ -61,7 +61,7 @@
 					<center>Tidak ada checklist</center>
 				@endif
 				@foreach($checklist_pl as $data)
-					<li>{{ $data->nama_daftar_pl}}</li>
+					<li>{{ $data->daftar_pl}}</li>
 				@endforeach
 			</ul>
 		</div>
@@ -78,7 +78,7 @@
 					<center>Tidak ada checklist</center>
 				@endif
 				@foreach($checklist_peralatanbaik as $data)
-					<li>{{ $data->nama_daftar_pl}}</li>
+					<li>{{ $data->daftar_pb}}</li>
 				@endforeach
 			</ul>
 		</div>
@@ -95,7 +95,7 @@
 					<center>Tidak ada checklist</center>
 				@endif
 				@foreach($checklist_orientasik3 as $data)
-					<li>{{ $data->nama_daftar_pl}}</li>
+					<li>{{ $data->daftar_ok}}</li>
 				@endforeach
 			</ul>
 		</div>
@@ -112,7 +112,7 @@
 					<center>Tidak ada checklist</center>
 				@endif
 				@foreach($checklist_apd as $data)
-					<li>{{ $data->nama_daftar_pl}}</li>
+					<li>{{ $data->daftar_apd}}</li>
 				@endforeach
 			</ul>
 		</div>

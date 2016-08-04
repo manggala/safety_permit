@@ -24,13 +24,10 @@ class AjaxController extends Controller {
 							->join("daftar_peralatanlokasi", "checklist_pl.id_daftar_pl", "=", "daftar_peralatanlokasi.id_daftar_pl")
 							->get();
 			$checklist_peralatanbaik = peralatanbaik::where("id_form_safetypermit", "=", $id)
-							->join("daftar_peralatanbaik", "checklist_peralatanbaik.id_daftar_pb", "=", "daftar_peralatanbaik.id_daftar_pb")
 							->get();
 			$checklist_orientasik3 = orientasik3::where("id_form_safetypermit", "=", $id)
-							->join("daftar_orientasik3", "checklist_orientasik3.id_daftar_ok", "=", "daftar_orientasik3.id_daftar_ok")
 							->get();
 			$checklist_apd = apd::where("id_form_safetypermit", "=", $id)
-							->join("daftar_apd", "checklist_apd.id_daftar_apd", "=", "daftar_apd.id_apd")
 							->get();
 			return View("Ajax.SafetyPermit.detail", 
 				["dataSP" => $dataSP, 
