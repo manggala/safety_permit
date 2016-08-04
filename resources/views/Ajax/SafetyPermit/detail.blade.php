@@ -4,7 +4,12 @@
 		<h3 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Detail Form Safety Permit</h3>
 		<div class="row">
 			<div class="col-sm-4">No. Form</div>
-			<div class="col-sm-8">: {{ $dataSP->id_form}}</div>
+			@if ($dataSP->id_jenissafetypermit == 'hot')
+				<div class="col-sm-8">: IPG-FORM/WP/01 - {{ $dataSP->id_form}}</div>
+			@else if ($dataSP->id_jenissafetypermit == 'cold')
+				<div class="col-sm-8">: IPG-FORM/WP/02 - {{ $dataSP->id_form}}</div>
+			@else if ($dataSP->id_jenissafetypermit == 'confined')
+				<div class="col-sm-8">: IPG-FORM/WP/03 - {{ $dataSP->id_form}}</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">Jenis Pekerjaan</div>

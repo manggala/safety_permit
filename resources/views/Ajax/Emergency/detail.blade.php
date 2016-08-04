@@ -10,7 +10,7 @@
 		<h3 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Detail Form Emergency Report</h3>
 		<div class="row">
 			<div class="col-sm-4">No. Form</div>
-			<div class="col-sm-8">: {{ $dataER->id_formemergency}}</div>
+			<div class="col-sm-8">: IPG-FORM/ER/01 - {{ $dataER->id_formemergency}}</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">NIP</div>

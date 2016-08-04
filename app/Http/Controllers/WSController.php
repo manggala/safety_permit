@@ -32,6 +32,8 @@ class WSController extends Controller {
 		$form_emergency->id_departemen = Input::get("departemen");
 		$form_emergency->id_lokasi = Input::get("id_lokasi");
 		$form_emergency->penanganan_formemergency = Input::get("penanganan_apa");
+		$form_emergency->tanggal_formemergency = Date("y-m-d");
+		$form_emergency->waktu_formemergency = Date("H:i:s");
 		$form_emergency->oleh_formemergency = Input::get("penanganan_siapa");
 		$sukses_form = $form_emergency->save();
 		$keadaan_darurat = Input::get('keadaan_darurat');
@@ -99,6 +101,7 @@ class WSController extends Controller {
 		$form_safetypermit->id_pelaksana = Input::get('id_pelaksana');
 		$form_safetypermit->id_jabatan = Input::get('id_jabatan');
 		$form_safetypermit->id_pengawas = Input::get('id_pengawas');
+		$form_safetypermit->id_jenissafetypermit = $tipe;
 		$form_safetypermit->waktu_mulai = Input::get('waktu_mulai');
 		$form_safetypermit->waktu_selesai = Input::get('waktu_selesai');
 		$form_safetypermit->jumlah_pekerja = Input::get('jumlah_pekerja');

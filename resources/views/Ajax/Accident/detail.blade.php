@@ -10,7 +10,7 @@
 		<h3 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Detail Form Accident Report</h3>
 		<div class="row">
 			<div class="col-sm-4">No. Form</div>
-			<div class="col-sm-8">: {{ $dataAR->id_formaccident}}</div>
+			<div class="col-sm-8">: IPG-FORM/AR/01 - {{ $dataAR->id_formaccident}}</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">NIP</div>

@@ -31,7 +31,7 @@
 	                  	$counter++;
 	                  	?>
 	                  </td>
-	                  <td>{{ $data->waktu_mulai }}
+	                  <td>{{ $data->created_at }}
 	                  </td>
 	                  <td>{{ $data->id_jenissafetypermit }}</td>
 	                  <td>{{ $data->id_pengawas}}</td>
