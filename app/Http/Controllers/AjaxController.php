@@ -48,8 +48,10 @@ class AjaxController extends Controller {
 				["dataAR" => $dataAR]
 			);
 		} else if ($tipe == "nearmiss"){
-			$dataAR = nearmiss::where("id_formaccident", "=", $id)
+			$dataAR = nearmiss::where("id_formnearmiss", "=", $id)
 					->first();
+			if ($dataAR == '')
+				return "Data tidak dapat diambil";
 			return View("Ajax.Accident.detail", 
 				["dataAR" => $dataAR]
 			);
