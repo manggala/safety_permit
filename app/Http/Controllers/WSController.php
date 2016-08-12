@@ -8,6 +8,8 @@ use Auth;
 use Date;
 use App\Http\Controllers\Controller;
 
+use App\Models\akses;
+
 use App\Models\Form\emergency;
 use App\Models\Form\accident;
 use App\Models\Form\nearmiss;
@@ -23,6 +25,16 @@ use App\Models\Checklist\apd;
 
 use App\Models\Debug;
 class WSController extends Controller {
+
+	public function doLogin(){
+		$akses = akses::where('username', '=', Input::get('username'))->where('password', '=', Input::get('password'))->where('hak_akses', '=', 3)->first();
+		
+		if (count($akses) > 0){
+			return json_encode(['result' => 'success']);
+		} else {
+			return json_encode(['result' => 'failed']);
+		}
+	}
 	public function insertView(){
 		return View("Emergency.insertForm");
 	}

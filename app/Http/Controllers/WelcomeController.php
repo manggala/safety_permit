@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
-use App\Supervisi;
+use App\Models\akses;
 use Session;
 use Input;
 class WelcomeController extends Controller {
@@ -28,7 +28,7 @@ class WelcomeController extends Controller {
 	}
 
 	/**
-	 * Show the application welcome screen to the supervisi.
+	 * Show the application welcome screen to the akses.
 	 *
 	 * @return Response
 	 */
@@ -51,10 +51,10 @@ class WelcomeController extends Controller {
 	}
 
 	public function doLogin(){
-		$supervisi = Supervisi::where('username', Input::get('username'))->where('password', Input::get('password'))->first();
+		$akses = akses::where('username', Input::get('username'))->where('password', Input::get('password'))->first();
 		
-		if (count($supervisi) > 0){
-			Session::set('supervisiSession', $supervisi);
+		if (count($akses) > 0){
+			Session::set('supervisiSession', $akses);
 			$sessionData = Session::get('supervisiSession');
 			
 			return redirect()->route('home');

@@ -1,5 +1,6 @@
 <?php 
 namespace App\Http\Controllers;
+use Session;
 use App;
 use Input;
 use Datetime;
@@ -17,8 +18,8 @@ class SafetyPermitController extends Controller {
 
 	public function index(){
 		$form = SafetyPermit::all();
-		
-		return View('SafetyPermit.index', ["form" => $form]);
+		$akses = Session::get('supervisiSession');
+		return View('SafetyPermit.index', ["form" => $form, "akses" => $akses]);
 	}
 
 	public function formhse(){
