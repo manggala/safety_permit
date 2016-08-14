@@ -31,7 +31,10 @@
 	                  <td>{{ $data->created_at }}</td>
 	                  <td>{{ $data->type }}</td>
 	                  <td>
-	                  	<button class="btn btn-sm btn-flat btn-warning col-sm-12" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="{{$data->type}}" idTipe="{{ $data->id_parent}}">Lihat</button>
+	                  	<button class="btn btn-sm btn-flat btn-warning col-sm-2" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="{{$data->type}}" idTipe="{{ $data->id_parent}}">Lihat</button>
+	                  	@if ($akses->hak_akses == 1)
+	                  	<button class="btn btn-sm btn-flat btn-danger pull-right" data-toggle="modal" data-target="#detailModal" onclick="deleteModal(this)" tipe="accnear" idTipe="{{ $data->id_parent}}"><i class="fa fa-times"></i> Hapus</button>
+	                  	@endif
 	                  </td>
 	                </tr>
 	                @endforeach

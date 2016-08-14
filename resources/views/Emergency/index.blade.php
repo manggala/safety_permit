@@ -35,7 +35,10 @@
 	                  <td>{{ $data->id_lokasi}}</td>
 	                  <td>{{ $data->nip}}</td>
 	                  <td>
-	                  	<button class="btn btn-sm btn-flat btn-warning col-sm-12" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="er" idTipe="{{ $data->id_formemergency}}">Lihat</button>
+	                  	<button class="btn btn-sm btn-flat btn-warning col-sm-4" data-toggle="modal" data-target="#detailModal" onclick="detailModal(this)" tipe="er" idTipe="{{ $data->id_formemergency}}">Lihat</button>
+	                  	@if ($akses->hak_akses == 1)
+	                  	<button class="btn btn-sm btn-flat btn-danger pull-right" data-toggle="modal" data-target="#detailModal" onclick="deleteModal(this)" tipe="er" idTipe="{{ $data->id_formemergency}}"><i class="fa fa-times"></i> Hapus</button>
+	                  	@endif
 	                  </td>
 	                </tr>
 	                @endforeach

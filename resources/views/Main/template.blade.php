@@ -211,7 +211,14 @@ function detailModal(target){
     $("#modalBodyDetail").html(data);
   });
 }
-
+function deleteModal(target){
+  var target = $(target);
+  $("#modalHeaderDetail").text("Lihat Hasil");
+  $("#modalBodyDetail").text("Tunggu Sebentar ...");
+  $.get("ajax/delete/" + target.attr("tipe").toString() + "/" + target.attr("idTipe").toString(), function(data){
+    $("#modalBodyDetail").html(data);
+  });
+}
 function konfirmasiModal(target){
   var target = $(target);
   $("#modalHeaderKonfirmasi").text("Lihat Hasil");

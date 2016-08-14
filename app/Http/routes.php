@@ -26,6 +26,8 @@ Route::get('/accident-report', ['as' => 'accient-report.list', 'uses' => 'Accide
 Route::get('/emergency-report', ['as' => 'emergency-report.list', 'uses' => 'EmergencyController@index']);
 
 Route::get('/ajax/detail/{tipe}/{id}', ['as' => 'safety-permit.detail', 'uses' => 'AjaxController@detail']);
+Route::get('/ajax/delete/{tipe}/{id}', ['as' => 'safety-permit.detail', 'uses' => 'AjaxController@delete']);
+Route::get('/ajax/delete/do/{tipe}/{id}', ['as' => 'safety-permit.detail', 'uses' => 'AjaxController@doDelete']);
 Route::get('/ajax/konfirmasi/{tipe}/{id}', ['as' => 'safety-permit.konfirmasi', 'uses' => 'AjaxController@konfirmasi']);
 
 Route::get('/ws/emergency/insertForm', ['as' => 'emergency.mobile.insert.form', 'uses' => 'WSController@insertView']);

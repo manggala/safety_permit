@@ -1,5 +1,6 @@
 <?php 
 namespace App\Http\Controllers;
+use Session;
 use App;
 use Input;
 use Datetime;
@@ -19,7 +20,8 @@ class AccidentController extends Controller {
 
 	public function index(){
 		$form = accnear::all();
-		return View('AccNear.index', ["form" => $form]);
+		$akses = Session::get('supervisiSession');
+		return View('AccNear.index', ["form" => $form, "akses"=> $akses]);
 	}
 
 	public function formhse(){

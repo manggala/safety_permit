@@ -6,6 +6,7 @@ use Session;
 
 use App\Models\Form\SafetyPermit;
 use App\Models\Form\Accident;
+use App\Models\Form\Accnear;
 use App\Models\Form\nearmiss;
 use App\Models\Form\Emergency;
 use App\Models\Checklist\pl;
@@ -21,7 +22,6 @@ class AjaxController extends Controller {
 		if ($tipe == "sp"){
 			$dataSP = SafetyPermit::where("id_form", "=", $id)->first();
 			$checklist_pl = pl::where("id_form_safetypermit", "=", $id)
-							->join("daftar_peralatanlokasi", "checklist_pl.id_daftar_pl", "=", "daftar_peralatanlokasi.id_daftar_pl")
 							->get();
 			$checklist_peralatanbaik = peralatanbaik::where("id_form_safetypermit", "=", $id)
 							->get();
@@ -68,7 +68,47 @@ class AjaxController extends Controller {
 		}
 		return "tipe tidak valid";
 	}
-
+	public function delete($tipe, $id){
+		if ($tipe == "sp"){
+			$dataForm = SafetyPermit::where("id_form", "=", $id)->first();
+			if (empty($dataForm))
+				return "<h4>Data tidak Ditemukan</h4>";
+		} else if ($tipe == "accnear"){
+			$dataForm = Accnear::where("id_parent", "=", $id)->first();
+			if (empty($dataForm))
+				return "<h4>Data tidak Ditemukan</h4>";
+		} else if ($tipe == "er"){
+			$dataForm = Emergency::where("id_formemergency", "=", $id)->first();
+			if (empty($dataForm))
+				return "<h4>Data tidak Ditemukan</h4>";
+		}
+		return View("Ajax.delete", [
+				"tipe" => $tipe,
+				"id" => $id
+			]
+		);
+	}
+	public function doDelete($tipe, $id){
+		if ($tipe == "sp"){
+			$dataForm = SafetyPermit::where("id_form", "=", $id)->first();
+			if (!empty($dataForm)){
+				$dataForm->delete();
+				return redirect()->route("safety-permit.list");
+			}
+		} else if ($tipe == "accnear"){
+			$dataForm = Accnear::where("id_parent", "=", $id)->first();
+			if (!empty($dataForm)){
+				$dataForm->delete();
+				return redirect()->route("accient-report.list");
+			}
+		} else if ($tipe == "er"){
+			$dataForm = Emergency::where("id_formemergency", "=", $id)->first();
+			if (!empty($dataForm)){
+				$dataForm->delete();
+				return redirect()->route("emergency-report.list");
+			}
+		}
+	}
 	public function konfirmasi($tipe, $id){
 		$boolTipe = 0;
 		if ($tipe == "setuju")

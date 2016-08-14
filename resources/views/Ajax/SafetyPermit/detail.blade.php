@@ -71,7 +71,7 @@
 <!-- Chekclist Peralatan Baik -->
 <div class="row">
 	<div class="col-sm-12">
-		<h4 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Checklist Pengamanan Peralatan dan Lokasi</h4>
+		<h4 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Checklist Peralatan Baik</h4>
 		<div class="row">
 			<ul>
 				@if(count($checklist_peralatanbaik) <= 0)
@@ -88,7 +88,7 @@
 <!-- Checklist Orientasi K3 -->
 <div class="row">
 	<div class="col-sm-12">
-		<h4 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Checklist Pengamanan Peralatan dan Lokasi</h4>
+		<h4 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Checklist Orientasi K3</h4>
 		<div class="row">
 			<ul>
 				@if(count($checklist_orientasik3 ) <= 0)
@@ -105,7 +105,7 @@
 <!-- Checklist APD -->
 <div class="row">
 	<div class="col-sm-12">
-		<h4 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Checklist Pengamanan Peralatan dan Lokasi</h4>
+		<h4 style="border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; padding-bottom: 10px; padding-top: 10px">Checklist APD</h4>
 		<div class="row">
 			<ul>
 				@if(count($checklist_apd) <= 0)

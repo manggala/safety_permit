@@ -1,5 +1,6 @@
 <?php 
 namespace App\Http\Controllers;
+use Session;
 use App;
 use Input;
 use Datetime;
@@ -17,7 +18,8 @@ class EmergencyController extends Controller {
 
 	public function index(){
 		$form = Emergency::all();
-		return View('Emergency.index', ["form" => $form]);
+		$akses = Session::get('supervisiSession');
+		return View('Emergency.index', ["form" => $form, "akses" => $akses]);
 	}
 
 	public function formhse(){
