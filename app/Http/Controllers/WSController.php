@@ -9,6 +9,7 @@ use Date;
 use App\Http\Controllers\Controller;
 
 use App\Models\akses;
+use App\Models\log;
 
 use App\Models\Form\emergency;
 use App\Models\Form\accident;
@@ -107,6 +108,10 @@ class WSController extends Controller {
 	}
 
 	public function insertSPForm($tipe){
+		$input = json_encode(Input::all());
+		$log = new log;
+		$log->input = $input;
+		$log->save();
 		$form_safetypermit = new safetypermit;
 		$form_safetypermit->id_pekerjaan = Input::get('id_pekerjaan');
 		$form_safetypermit->id_lokasi = Input::get('id_lokasi');
