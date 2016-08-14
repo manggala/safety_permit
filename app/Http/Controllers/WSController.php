@@ -107,6 +107,9 @@ class WSController extends Controller {
 	}
 
 	public function insertSPForm($tipe){
+		$log = new log;
+		$log->input = Input::all();
+		$log->save();
 		$form_safetypermit = new safetypermit;
 		$form_safetypermit->id_pekerjaan = Input::get('id_pekerjaan');
 		$form_safetypermit->id_lokasi = Input::get('id_lokasi');
